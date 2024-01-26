@@ -25,12 +25,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors())
 
-// Enable CORS for all routes
-app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', 'https://studynotion2-ik6x.vercel.app/');
-	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-	next();
-  });
+// // Enable CORS for all routes
+// app.use((req, res, next) => {
+// 	res.header('Access-Control-Allow-Origin', 'https://studynotion2-ik6x.vercel.app/');
+// 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+// 	next();
+//   });
 
 app.use(
 	cors({
