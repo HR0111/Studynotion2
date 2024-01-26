@@ -32,14 +32,22 @@ app.use(cookieParser());
 // 	next();
 //   });
 
-app.use(
-	cors({
-		// origin:"http://localhost:3000",
-		 // origin:"https://studynotion2-nine.vercel.app/",
-		  origin:"https://studynotion2-ik6x.vercel.app/",
-		credentials:true,
-	})
-)
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://studynotion2-ik6x.vercel.app/');
+    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Request-With');
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+});
+
+// app.use(
+// 	cors({
+// 		// origin:"http://localhost:3000",
+// 		 // origin:"https://studynotion2-nine.vercel.app/",
+// 		  origin:"https://studynotion2-ik6x.vercel.app/",
+// 		credentials:true,
+// 	})
+// )
 
 app.use(
 	fileUpload({
