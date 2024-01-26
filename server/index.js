@@ -23,7 +23,7 @@ database.connect();
 //middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors())
+// app.use(cors())
 
 // // Enable CORS for all routes
 // app.use((req, res, next) => {
@@ -50,13 +50,26 @@ app.use(
 //cloudinary connection
 cloudinaryConnect();
 
-//routes
-app.use("/api/v1/auth", userRoutes);
-app.use("/api/v1/profile", profileRoutes);
-app.use("/api/v1/course", courseRoutes);
-app.use("/api/v1/payment", paymentRoutes);
-app.use("/api/v1/reach", contactUsRoute);
+app.use('/api', createProxyMiddleware({
+	target: 'https://stud-backendhr-dka5.onrender.com',
+	changeOrigin: true,
+  }));
 
+
+
+// //routes
+// app.use("/api/v1/auth", userRoutes);
+// app.use("/api/v1/profile", profileRoutes);
+// app.use("/api/v1/course", courseRoutes);
+// app.use("/api/v1/payment", paymentRoutes);
+// app.use("/api/v1/reach", contactUsRoute);
+
+// Explicitly handle CORS for each route
+app.use('/api/v1/auth', cors(), userRoutes);
+app.use('/api/v1/profile', cors(), profileRoutes);
+app.use('/api/v1/course', cors(), courseRoutes);
+app.use('/api/v1/payment', cors(), paymentRoutes);
+app.use('/api/v1/reach', cors(), contactUsRoute);
 
 //def route
 
